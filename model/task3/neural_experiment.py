@@ -6,9 +6,12 @@ sys.path.append('../../')
 sys.path.append('../../../')
 import argparse
 
-from semeval2018.data.task3 import parse
-from semeval2018.model.configs import TASK3_A, TASK3_B
-from semeval2018.util.boiler import define_trainer, model_training
+# from semeval2018.data.task3 import parse
+# from semeval2018.model.configs import TASK3_A, TASK3_B
+# from semeval2018.util.boiler import define_trainer, model_training
+from dataloaders.task3 import parse
+from model.params import TASK3_A, TASK3_B
+from utils.train import define_trainer, model_training
 
 ##############################################################################
 # Command line Arguments
@@ -16,8 +19,8 @@ from semeval2018.util.boiler import define_trainer, model_training
 
 parser = argparse.ArgumentParser(description='test',
                                  formatter_class=argparse.RawTextHelpFormatter)
-parser.add_argument('--task', help="choose subtask a or b", default="b")
-parser.add_argument('--mode', help='choose "char" or "word"', default="char")
+parser.add_argument('--task', help="choose subtask a or b", default="a")
+parser.add_argument('--mode', help='choose "char" or "word"', default="word")
 args = parser.parse_args()
 print(args)
 
@@ -39,7 +42,7 @@ if args.mode == "char":
     model_config["embed_noise"] = 0.0
     model_config["embed_dropout"] = 0.0
 else:
-    model_config["embed_dim"] = 300
+    model_config["embed_dim"] = 310
     model_config["embed_finetune"] = False
     model_config["attention"] = True
     model_config["embed_noise"] = 0.05

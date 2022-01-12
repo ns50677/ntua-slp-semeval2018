@@ -9,10 +9,7 @@ from utils.train import load_embeddings, load_datasets
 
 
 def train_task(task):
-    if task == "a":
-        model_config = TASK3_A
-    else:
-        model_config = TASK3_B
+    model_config = TASK3_A
 
     X_train, y_train = parse(task=task, dataset="train")
     X_test, y_test = parse(task=task, dataset="gold")
@@ -55,11 +52,9 @@ def train_task(task):
 
 
 results_a = train_task("a")
-results_b = train_task("b")
 
 results = {
-    "A": results_a,
-    "B": results_b,
+    "A": results_a
 }
 
 with open(os.path.join(EXPS_PATH, "TASK3_baselines.json"), 'w') as f:

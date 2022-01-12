@@ -9,7 +9,7 @@ def parse_train_csv(data_file):
         y: a list of labels corresponding to the tweets
 
     """
-    with open(data_file, 'r') as fd:
+    with open(data_file, 'r', encoding='utf-8') as fd:
         data = [l.strip().split('\t') for l in fd.readlines()][1:]
     X = [d[2] for d in data]
     y = [d[1] for d in data]
@@ -24,7 +24,7 @@ def parse_test_csv(data_file):
         y: a list of labels corresponding to the tweets
 
     """
-    with open(data_file, 'r') as fd:
+    with open(data_file, 'r', encoding='utf-8') as fd:
         data = [l.strip().split('\t') for l in fd.readlines()][1:]
     X = [d[1] for d in data]
     return X
